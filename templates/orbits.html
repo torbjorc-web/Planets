@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1d">
+  <meta name="description" content="Se planetene bevege seg i baner rundt Solen.">
+  <title>Solsystemet i bevegelse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/orbits.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/orbits.js') }}" defer></script>
+</head>
+<body class="orbit-page">
+  <canvas id="space" aria-hidden="true"></canvas>
+  <main>
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <a href="{{ url_for('index') }}">Planetinfo</a>
+      <a class="active" href="{{ url_for('solar_system') }}" aria-current="page">Solsystemet i bevegelse</a>
+    </nav>
+    <p class="eyebrow">En forenklet modell · ikke i målestokk</p>
+    <h1>Planetene rundt Solen</h1>
+    <p class="intro">Følg planetenes baner rundt Solen. Banene er gjort tydeligere enn i virkeligheten, og avstandene er ikke i målestokk.</p>
+    <section class="orbit-stage" id="orbit-stage" aria-label="Animasjon av planetbanene rundt Solen">
+      <div class="sun-core" aria-label="Solen"><span>SOLEN</span></div>
+      <div class="orbit" style="--orbit-size: 15%; --period: 5s"><button class="orbit-planet mercury" data-planet="merkur" type="button" aria-label="Vis informasjon om Merkur"></button></div>
+      <div class="orbit" style="--orbit-size: 25%; --period: 8s"><button class="orbit-planet venus" data-planet="venus" type="button" aria-label="Vis informasjon om Venus"></button></div>
+      <div class="orbit" style="--orbit-size: 35%; --period: 11s"><button class="orbit-planet earth" data-planet="jorden" type="button" aria-label="Vis informasjon om Jorden"></button></div>
+      <div class="orbit" style="--orbit-size: 45%; --period: 15s"><button class="orbit-planet mars" data-planet="mars" type="button" aria-label="Vis informasjon om Mars"></button></div>
+      <div class="orbit" style="--orbit-size: 59%; --period: 25s"><button class="orbit-planet jupiter" data-planet="jupiter" type="button" aria-label="Vis informasjon om Jupiter"></button></div>
+      <div class="orbit" style="--orbit-size: 71%; --period: 31s"><button class="orbit-planet saturn" data-planet="saturn" type="button" aria-label="Vis informasjon om Saturn"></button></div>
+      <div class="orbit" style="--orbit-size: 83%; --period: 44s"><button class="orbit-planet uranus" data-planet="uranus" type="button" aria-label="Vis informasjon om Uranus"></button></div>
+      <div class="orbit" style="--orbit-size: 95%; --period: 56s"><button class="orbit-planet neptune" data-planet="neptun" type="button" aria-label="Vis informasjon om Neptun"></button></div>
+    </section>
+    <div class="orbit-controls" aria-label="Animasjonskontroller">
+      <button id="orbit-toggle" type="button" aria-pressed="false">Pause banene</button>
+      <label for="orbit-speed">Fart</label>
+      <input id="orbit-speed" type="range" min="0.5" max="2" step="0.1" value="1">
+      <output id="orbit-speed-value" for="orbit-speed">1×</output>
+    </div>
+    <ul class="planet-legend" aria-label="Velg en planet for informasjon">
+      <li><button class="legend-planet planet-trigger" data-planet="merkur" type="button"><i class="mercury"></i>Merkur</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="venus" type="button"><i class="venus"></i>Venus</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="jorden" type="button"><i class="earth"></i>Jorden</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="mars" type="button"><i class="mars"></i>Mars</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="jupiter" type="button"><i class="jupiter"></i>Jupiter</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="saturn" type="button"><i class="saturn"></i>Saturn</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="uranus" type="button"><i class="uranus"></i>Uranus</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="neptun" type="button"><i class="neptune"></i>Neptun</button></li>
+    </ul>
+    <div class="toolbar"><button id="toggle" type="button" aria-pressed="true">Pause stjernene</button></div>
+    <dialog id="planet-dialog" aria-labelledby="planet-title">
+      <button class="dialog-close" type="button" aria-label="Lukk">×</button>
+      <p class="dialog-kicker">NASA · Planetfakta</p>
+      <h2 id="planet-title"></h2><p id="planet-description" class="dialog-description"></p>
+      <dl class="planet-facts">
+        <div><dt>Diameter</dt><dd id="planet-diameter"></dd></div>
+        <div><dt>Et år varer</dt><dd id="planet-year"></dd></div>
+        <div><dt>Type</dt><dd id="planet-type"></dd></div>
+      </dl>
+      <a id="planet-source" class="nasa-link" target="_blank" rel="noopener noreferrer">Les mer hos NASA <span aria-hidden="true">↗</span></a>
+    </dialog>
+  </main>
+</body>
+</html>
