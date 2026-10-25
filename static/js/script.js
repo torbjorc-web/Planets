@@ -1,8 +1,6 @@
 (() => {
   const canvas = document.querySelector('#space');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas?.getContext('2d');
   const button = document.querySelector('#toggle');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const planetInfo = {
@@ -50,8 +48,9 @@
     dialog.showModal();
   }
 
-  document.querySelectorAll('.planet-trigger, .orbit-planet').forEach(trigger => {
-    trigger.addEventListener('click', () => showPlanet(trigger.dataset.planet));
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('.planet-trigger, .orbit-planet, .moon-card');
+    if (trigger) showPlanet(trigger.dataset.planet);
   });
   dialogClose?.addEventListener('click', () => dialog.close());
   dialog?.addEventListener('click', event => {
@@ -61,6 +60,10 @@
     const planetKey = dialog.querySelector('#planet-title').textContent.toLowerCase();
     document.querySelector(`[data-planet="${planetKey}"]`)?.focus();
   });
+
+  // Some pages (such as the moon guide) use the shared facts dialog without
+  // rendering the animated star canvas.
+  if (!canvas || !ctx) return;
 
   const layers = [
     { count: 100, speed: .10, size: .65, alpha: .34 },

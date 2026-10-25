@@ -30,6 +30,9 @@ docs/
 
 ## Where to make changes
 
+- Change the quiz layout in `templates/quiz.html`, styling in `static/css/pages/quiz.css`, or question and scoring logic in `static/js/pages/quiz.js`.
+- The quiz route is `/quiz`; it reads the rendered pages and `static/data/moons.json` to build a shuffled question deck.
+
 - Edit moon descriptions, parent planets, NASA source links, or displayed orbital periods in `static/data/moons.json`. Both the moon page and orbit animation read this file.
 - Adjust orbit calculations, body appearance, speed controls, and belt rendering in `static/js/orbits.js`.
 - Change the moon information page layout in `templates/moons.html`; its page behavior starts in `static/js/pages/moons.js`.

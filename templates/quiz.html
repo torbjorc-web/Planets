@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Romquiz – Planetrom</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/quiz.css') }}">
+  <script type="module" src="{{ url_for('static', filename='js/pages/quiz.js') }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PLANETROM</a>
+    <nav aria-label="Hovedmeny">
+      <a href="/">Planetinfo</a>
+      <a href="/solsystem">Solsystemet</a>
+      <a href="/maaner">Månene</a>
+      <a href="/melkeveien">Melkeveien</a>
+      <a class="active" href="/quiz" aria-current="page">Quiz</a>
+    </nav>
+  </header>
+  <main>
+    <section class="quiz-intro">
+      <p class="eyebrow">TEST DET DU HAR LÆRT</p>
+      <h1>Romquiz</h1>
+      <p>Spørsmålene hentes fra planet-, måne- og Melkeveien-sidene. Hver runde stokkes på nytt, og du får ikke samme spørsmål to ganger før bunken er brukt opp.</p>
+    </section>
+    <section class="quiz-card" aria-labelledby="question-title">
+      <div class="quiz-score" aria-label="Resultat">
+        <div><span>Riktige</span><strong id="score-correct">0</strong></div>
+        <div><span>Besvart</span><strong id="score-answered">0</strong></div>
+        <div><span>På rad</span><strong id="score-streak">0</strong></div>
+      </div>
+      <div class="quiz-progress" aria-label="Framdrift"><span id="progress-bar"></span></div>
+      <p class="question-meta" id="question-meta" aria-live="polite">Laster spørsmål …</p>
+      <h2 id="question-title">Henter spørsmål</h2>
+      <div class="answer-list" id="answer-list" role="group" aria-labelledby="question-title"></div>
+      <p class="answer-feedback" id="answer-feedback" aria-live="polite"></p>
+      <button class="next-question" id="next-question" type="button" disabled>Neste spørsmål</button>
+      <p class="source-note" id="source-note"></p>
+    </section>
+  </main>
+</body>
+</html>

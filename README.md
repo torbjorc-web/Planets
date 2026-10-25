@@ -10,6 +10,9 @@ En liten Flask-nettside på norsk som sammenligner volumet til planetene med Jor
 - Bevegelige stjerner, stjerneskudd og pauseknapp.
 - Tilpasset smale skjermer og innstillingen for redusert bevegelse.
 - Egen solsystemside med baner rundt Solen, fartskontroll og klikkbare planeter.
+- Måneside med beskrivelser og NASA-lenker for et utvalg av månene.
+- Interaktiv Melkevei-side med animasjon, zoom og panorering.
+- Selvrettende quiz som henter spørsmål fra nettsidens sider og unngår gjentakelser før bunken er brukt opp.
 
 ## Kom i gang
 
@@ -69,3 +72,5 @@ Faktaene i dialogene er skrevet inn i `static/js/script.js` og lenker videre til
 ## Utvikling
 
 Flask kjører med debug-modus når du starter `python app.py`. Serveren laster vanligvis siden på nytt når Python- eller malfiler endres. CSS- og JavaScript-filer lastes fra `static/`.
+
+Quiz-siden ligger på `/quiz`. Den leser nettsidens HTML-sider og `static/data/moons.json` når siden åpnes, slik at spørsmålene følger innholdet som vises i appen.

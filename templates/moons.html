@@ -14,6 +14,7 @@
       <a href="/solsystem">Solsystemet</a>
       <a class="active" href="{{ url_for('moons') }}">Månene</a>
       <a href="/melkeveien">Melkeveien</a>
+      <a href="/quiz">Quiz</a>
     </nav>
   </header>
   <main>
@@ -30,7 +31,18 @@
     </div>
     <p class="footnote">Dette er et utvalg av kjente måner, ikke en fullstendig liste. Antall kjente småmåner endres når nye oppdages.</p>
   </main>
-  <dialog id="planet-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Lukk">×</button><p class="eyebrow">NASA · FAKTA OM SOLSYSTEMET</p><h2 id="dialog-title"></h2><p id="dialog-description"></p><dl><dt id="planet-period-label">Omløpstid</dt><dd id="planet-period"></dd><dt>Les mer hos NASA</dt><dd><a id="planet-source" target="_blank" rel="noreferrer">Åpne kilde ↗</a></dd></dl></dialog>
+  <dialog id="planet-dialog" aria-labelledby="planet-title">
+    <button class="dialog-close" type="button" aria-label="Lukk">×</button>
+    <p class="dialog-kicker">NASA · fakta om solsystemet</p>
+    <h2 id="planet-title"></h2>
+    <p id="planet-description" class="dialog-description"></p>
+    <dl>
+      <div><dt>Diameter</dt><dd id="planet-diameter"></dd></div>
+      <div><dt id="planet-period-label">Omløpstid</dt><dd id="planet-year"></dd></div>
+      <div><dt>Type</dt><dd id="planet-type"></dd></div>
+    </dl>
+    <a id="planet-source" class="dialog-source" target="_blank" rel="noreferrer">Les mer hos NASA ↗</a>
+  </dialog>
   <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
   <script type="module" src="{{ url_for('static', filename='js/pages/moons.js') }}"></script>
 </body>

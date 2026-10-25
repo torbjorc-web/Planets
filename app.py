@@ -29,5 +29,11 @@ def milky_way():
     return render_template("milky_way.html")
 
 
+@app.get("/quiz")
+def quiz():
+    """Render the self-marking quiz assembled from the site's own pages."""
+    return render_template("quiz.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
