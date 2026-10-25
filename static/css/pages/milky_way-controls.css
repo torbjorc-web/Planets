@@ -1,0 +1,2 @@
+.zoom-controls #motion-toggle{font-size:12px;white-space:nowrap}
+@media(max-width:650px){.zoom-controls #motion-toggle{font-size:10px;padding-inline:7px}}

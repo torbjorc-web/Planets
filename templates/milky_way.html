@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b19">
+  <title>Melkeveien – Planetrom</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/milky_way.css') }}">
+  <script src="{{ url_for('static', filename='js/pages/milky_way.js') }}" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">PLANETROM</a>
+    <nav aria-label="Hovedmeny">
+      <a href="/">Planetinfo</a>
+      <a href="/solsystem">Solsystemet</a>
+      <a href="/maaner">Månene</a>
+      <a class="active" href="/melkeveien" aria-current="page">Melkeveien</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">ZOOM UT · FRA SOLSYSTEM TIL GALAKSE</p>
+      <h1>Vår plass i<br><span>Melkeveien</span></h1>
+      <p>Zoom ut fra Solens nabolag og se hvor lite solsystemet er i vår galakse. Dra i bildet for å utforske.</p>
+    </section>
+    <section class="viewer" aria-label="Interaktiv illustrasjon av Melkeveien">
+      <canvas id="galaxy" role="img" aria-label="Illustrasjon av Melkeveien med Solens plassering markert"></canvas>
+      <div class="view-label" id="view-label" aria-live="polite">Melkeveien</div>
+      <div class="zoom-controls" aria-label="Zoomkontroller">
+        <button id="zoom-in" type="button" aria-label="Zoom inn">+</button>
+        <input id="zoom-level" type="range" min="0" max="100" value="0" aria-label="Zoomnivå">
+        <button id="zoom-out" type="button" aria-label="Zoom ut">−</button>
+        <button id="reset-view" type="button">Hele galaksen</button>
+        <button id="motion-toggle" type="button" aria-pressed="true">Pause bevegelse</button>
+      </div>
+      <div class="scale-key"><span class="sun-dot"></span> Solsystemet</div>
+    </section>
+    <section class="facts" aria-live="polite">
+      <p class="eyebrow">DU ER HER</p>
+      <h2 id="fact-title">Et sted i Orion-armen</h2>
+      <p id="fact-copy">Solsystemet ligger omtrent 26&nbsp;000 lysår fra Melkeveiens sentrum, i en mindre spiralarm. Galaksens lyse bånd på nattehimmelen er utsikten inn gjennom stjernetette deler av vår egen galakse.</p>
+      <p class="disclaimer">Illustrasjonen er skjematisk. Størrelser, avstander, stjernetetthet og spiralarmenes form er ikke vist i nøyaktig målestokk. Galaksens rotasjon er gjort mye raskere enn i virkeligheten for at bevegelsen skal synes.</p>
+    </section>
+  </main>
+</body>
+</html>

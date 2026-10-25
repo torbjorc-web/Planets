@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1d">
+  <meta name="description" content="Sammenlign planetenes volum med Jorden og Solen, og utforsk fakta fra NASA.">
+  <title>Planetvolumer – en sammenligning</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <main>
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <a class="active" href="{{ url_for('index') }}" aria-current="page">Planetinfo</a>
+      <a href="{{ url_for('solar_system') }}">Solsystemet i bevegelse</a>
+      <a href="{{ url_for('moons') }}">Månene</a>
+      <a href="/melkeveien">Melkeveien</a>
+    </nav>
+    <p class="eyebrow">Solsystemet · volum</p>
+    <h1>Planetene i perspektiv</h1>
+    <p class="intro">Hvor store er planetene sammenlignet med Jorden – og hvor mye plass tar de til sammen mot Solen?</p>
+    <div class="toolbar"><button id="toggle" type="button" aria-pressed="true">Pause stjernene</button></div>
+    <div class="table-wrap">
+      <table>
+        <caption>Omtrentlige volum basert på middelradier</caption>
+        <thead><tr><th scope="col">Planet</th><th scope="col">Volum (km³)</th><th scope="col">× Jordens volum</th></tr></thead>
+        <tbody>
+          <tr><td><button class="planet-trigger" data-planet="merkur" type="button">Merkur</button></td><td>6,08 × 10¹⁰</td><td>0,056</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="venus" type="button">Venus</button></td><td>9,28 × 10¹¹</td><td>0,857</td></tr>
+          <tr class="earth"><td><button class="planet-trigger" data-planet="jorden" type="button">Jorden</button></td><td>1,083 × 10¹²</td><td>1,000</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="mars" type="button">Mars</button></td><td>1,63 × 10¹¹</td><td>0,151</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="jupiter" type="button">Jupiter</button></td><td>1,431 × 10¹⁵</td><td>1 321,3</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="saturn" type="button">Saturn</button></td><td>8,27 × 10¹⁴</td><td>763,6</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="uranus" type="button">Uranus</button></td><td>6,83 × 10¹³</td><td>63,1</td></tr>
+          <tr><td><button class="planet-trigger" data-planet="neptun" type="button">Neptun</button></td><td>6,25 × 10¹³</td><td>57,7</td></tr>
+          <tr class="summary"><td>Sum av planetene</td><td>2,391 × 10¹⁵</td><td>2 207,8</td></tr>
+          <tr class="sun"><td>Sammenlignet med Solen</td><td>0,1697 % av Solens volum</td><td>0,001697 × Solen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Alle planetene til sammen utgjør omtrent <strong>0,17 % av Solens volum</strong> – Solen er rundt 590 ganger større.</p>
+    <dialog id="planet-dialog" aria-labelledby="planet-title">
+      <button class="dialog-close" type="button" aria-label="Lukk">×</button>
+      <p class="dialog-kicker">NASA · fakta om solsystemet</p>
+      <h2 id="planet-title"></h2>
+      <p id="planet-description" class="dialog-description"></p>
+      <dl class="planet-facts">
+        <div><dt>Diameter</dt><dd id="planet-diameter"></dd></div>
+        <div><dt id="planet-period-label">Et år varer</dt><dd id="planet-year"></dd></div>
+        <div><dt>Type</dt><dd id="planet-type"></dd></div>
+      </dl>
+      <a id="planet-source" class="nasa-link" target="_blank" rel="noopener noreferrer">Les mer hos NASA <span aria-hidden="true">↗</span></a>
+    </dialog>
+  </main>
+</body>
+</html>

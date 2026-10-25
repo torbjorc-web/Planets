@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Månene i solsystemet</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/moons.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') }}">PLANETROM</a>
+    <nav aria-label="Hovedmeny">
+      <a href="{{ url_for('index') }}">Planetinfo</a>
+      <a href="/solsystem">Solsystemet</a>
+      <a class="active" href="{{ url_for('moons') }}">Månene</a>
+      <a href="/melkeveien">Melkeveien</a>
+    </nav>
+  </header>
+  <main>
+    <p class="eyebrow">NATURLIGE SATELLITTER</p>
+    <h1>Månene våre</h1>
+    <p class="intro">Utforsk et utvalg av de mest kjente månene. Trykk på en måne for NASA-informasjon.</p>
+    <div class="moon-groups">
+      <section><h2>Jorden</h2><button class="moon-card" data-planet="luna"><span>🌕</span><b>Månen</b><small>Jordens eneste naturlige måne</small></button></section>
+      <section><h2>Mars</h2><button class="moon-card" data-planet="phobos"><span>🪨</span><b>Phobos</b><small>Den største og innerste</small></button><button class="moon-card" data-planet="deimos"><span>🪨</span><b>Deimos</b><small>Den minste og ytterste</small></button></section>
+      <section><h2>Jupiter</h2><button class="moon-card" data-planet="io"><span>🟠</span><b>Io</b><small>Vulkansk aktiv verden</small></button><button class="moon-card" data-planet="europa"><span>🧊</span><b>Europa</b><small>Mulig hav under isen</small></button><button class="moon-card" data-planet="ganymedes"><span>🌑</span><b>Ganymedes</b><small>Solsystemets største måne</small></button><button class="moon-card" data-planet="callisto"><span>🌘</span><b>Callisto</b><small>Kraterdekket overflate</small></button></section>
+      <section><h2>Saturn</h2><button class="moon-card" data-planet="titan"><span>🟤</span><b>Titan</b><small>Tett atmosfære og metansjøer</small></button><button class="moon-card" data-planet="enceladus"><span>❄️</span><b>Enceladus</b><small>Isfontener fra et indre hav</small></button><button class="moon-card" data-planet="rhea"><span>🌕</span><b>Rhea</b><small>Saturns nest største måne</small></button></section>
+      <section><h2>Uranus</h2><button class="moon-card" data-planet="miranda"><span>🌗</span><b>Miranda</b><small>Urolig og variert terreng</small></button><button class="moon-card" data-planet="ariel"><span>🌒</span><b>Ariel</b><small>Lyse kløfter og daler</small></button><button class="moon-card" data-planet="umbriel"><span>🌑</span><b>Umbriel</b><small>Mørk, gammel overflate</small></button><button class="moon-card" data-planet="titania"><span>🌕</span><b>Titania</b><small>Uranus' største måne</small></button><button class="moon-card" data-planet="oberon"><span>🌘</span><b>Oberon</b><small>Ytre stor måne</small></button></section>
+      <section><h2>Neptun</h2><button class="moon-card" data-planet="triton"><span>🧊</span><b>Triton</b><small>Går baklengs rundt Neptun</small></button><button class="moon-card" data-planet="proteus"><span>🌑</span><b>Proteus</b><small>Neptuns nest største måne</small></button></section>
+    </div>
+    <p class="footnote">Dette er et utvalg av kjente måner, ikke en fullstendig liste. Antall kjente småmåner endres når nye oppdages.</p>
+  </main>
+  <dialog id="planet-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Lukk">×</button><p class="eyebrow">NASA · FAKTA OM SOLSYSTEMET</p><h2 id="dialog-title"></h2><p id="dialog-description"></p><dl><dt id="planet-period-label">Omløpstid</dt><dd id="planet-period"></dd><dt>Les mer hos NASA</dt><dd><a id="planet-source" target="_blank" rel="noreferrer">Åpne kilde ↗</a></dd></dl></dialog>
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  <script type="module" src="{{ url_for('static', filename='js/pages/moons.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d1d">
+  <meta name="description" content="Se planetene bevege seg i baner rundt Solen.">
+  <title>Solsystemet i bevegelse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/orbits.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+  <script type="module" src="{{ url_for('static', filename='js/pages/orbits.js') }}"></script>
+</head>
+<body class="orbit-page">
+  <canvas id="space" aria-hidden="true"></canvas>
+  <main>
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <a href="{{ url_for('index') }}">Planetinfo</a>
+      <a class="active" href="{{ url_for('solar_system') }}" aria-current="page">Solsystemet i bevegelse</a>
+      <a href="{{ url_for('moons') }}">Månene</a>
+      <a href="/melkeveien">Melkeveien</a>
+    </nav>
+    <p class="eyebrow">Forenklet modell · ellipsebaner og omløpstider</p>
+    <h1>Planetene rundt Solen</h1>
+    <p class="intro">Planetene følger elliptiske baner med ulike omløpstider. Klikk på en planet eller måne for fakta.</p>
+
+    <section class="orbit-stage" id="orbit-stage" aria-label="Animasjon av planetbanene rundt Solen">
+      <canvas id="debris-belts" aria-hidden="true"></canvas>
+      <div class="orbit-lines" id="orbit-lines" aria-hidden="true"></div>
+      <div class="sun-core" aria-label="Solen"><span>SOLEN</span></div>
+      <div class="bodies-layer" id="bodies-layer"></div>
+    </section>
+
+    <div class="orbit-controls" aria-label="Animasjonskontroller">
+      <button id="orbit-toggle" type="button" aria-pressed="false">Pause banene</button>
+      <label for="orbit-speed">Tidsfart</label>
+      <input id="orbit-speed" type="range" min="0.5" max="10" step="0.5" value="1">
+      <output id="orbit-speed-value" for="orbit-speed">1×</output>
+    </div>
+
+    <p class="scale-note">Planetbanene bruker Keplers elliptiske bevegelser, men avstandene er komprimert. Månebanene er forstørret og går saktere for å synes. Asteroidebeltet og Kuiperbeltet er vist som mange små legemer; Oortskyen er utenfor denne skalaen.</p>
+
+    <ul class="planet-legend" aria-label="Velg et himmellegeme for informasjon">
+      <li><button class="legend-planet planet-trigger" data-planet="merkur" type="button"><i class="mercury"></i>Merkur</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="venus" type="button"><i class="venus"></i>Venus</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="jorden" type="button"><i class="earth"></i>Jorden</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="mars" type="button"><i class="mars"></i>Mars</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="jupiter" type="button"><i class="jupiter"></i>Jupiter</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="saturn" type="button"><i class="saturn"></i>Saturn</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="uranus" type="button"><i class="uranus"></i>Uranus</button></li>
+      <li><button class="legend-planet planet-trigger" data-planet="neptun" type="button"><i class="neptune"></i>Neptun</button></li>
+    </ul>
+
+    <div class="belt-legend"><span><i class="asteroid-swatch"></i> Asteroidebeltet</span><span><i class="kuiper-swatch"></i> Kuiperbeltet</span><span><i class="oort-swatch"></i> Oortskyen · ikke vist i målestokk</span></div>
+    <div class="toolbar"><button id="toggle" type="button" aria-pressed="true">Pause stjernene</button></div>
+    <dialog id="planet-dialog" aria-labelledby="planet-title">
+      <button class="dialog-close" type="button" aria-label="Lukk">×</button>
+      <p class="dialog-kicker">NASA · fakta om solsystemet</p>
+      <h2 id="planet-title"></h2>
+      <p id="planet-description" class="dialog-description"></p>
+      <dl class="planet-facts">
+        <div><dt>Diameter</dt><dd id="planet-diameter"></dd></div>
+        <div><dt id="planet-period-label">Et år varer</dt><dd id="planet-year"></dd></div>
+        <div><dt>Type</dt><dd id="planet-type"></dd></div>
+      </dl>
+      <a id="planet-source" class="nasa-link" target="_blank" rel="noopener noreferrer">Les mer hos NASA <span aria-hidden="true">↗</span></a>
+    </dialog>
+  </main>
+</body>
+</html>
